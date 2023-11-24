@@ -23,7 +23,7 @@ export default defineComponent({
       return avatar?.value === this.selected ? 'selected' : '';
     },
     getAvatarUrl(avatar: string) {
-      const path = `../../assets/objects/avatars/${avatar}_front.png`;
+      const path = `../../assets/objects/avatar/${avatar}_front.png`;
       const imageUrl = new URL(path, import.meta.url);
       return imageUrl.href;
     },
@@ -37,7 +37,7 @@ export default defineComponent({
   computed: {
     avatarImage() {
       if (this.image && this.image.trim().length > 0) {
-        const path = `../../assets/objects/avatars/${this.image}_front.png`;
+        const path = `../../assets/objects/avatar/${this.image}_front.png`;
         const imageUrl = new URL(path, import.meta.url);
         return imageUrl.href;
       }
@@ -53,28 +53,28 @@ export default defineComponent({
     <div class="avatar">
       <img :src="avatarImage" :alt="alt" />
     </div>
+    <span>Alterar avatar</span>
     <GDialog v-model="showModal">
       <div class="wrapper">
         <div class="content">
           <p>Avatar</p>
-          <span>Selecione seu Avatar</span>
-          <div class="line"></div>
+          <span>Selecione seu avatar</span>
+          <div class="line" />
           <div class="avatars">
             <div
               class="container-avatar"
               v-for="avatar in avatars"
+              :class="isSelected(avatar)"
               :key="avatar.value"
-              :class="isSelected(avatar.value)"
               @click="selected = avatar.value"
             >
               <img :src="getAvatarUrl(avatar.value)" />
             </div>
           </div>
-        </div>
-
-        <div class="actions">
-          <span @click="showModal = false">Voltar</span>
-          <button type="button" @click="submitAvatar">Salvar</button>
+          <div class="actions">
+            <span @click="showModal = false">Voltar</span>
+            <button type="button" @click="submitAvatar">Salvar</button>
+          </div>
         </div>
       </div>
     </GDialog>

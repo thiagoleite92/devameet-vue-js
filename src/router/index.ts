@@ -12,7 +12,7 @@ const router = createRouter({
       component: LoginViewVue
     },
     {
-      path: '/cadastro',
+      path: '/register',
       name: 'register',
       component: RegisterViewVue
     }
