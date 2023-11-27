@@ -77,6 +77,9 @@ export default defineComponent({
     <img src="../assets/images/logo.svg" alt="Logo Devammet" class="logo" />
 
     <form>
+      <p v-if="$route?.query?.success" class="success">
+        Cadastro efetuado com sucesso, realize o login para continuar.
+      </p>
       <p v-if="error" class="error">{{ error }}</p>
 
       <CustomInput

@@ -51,7 +51,56 @@ export default defineComponent({
     setImage(v: string) {
       this.image = v;
     },
-    async doRegister() {}
+    async doRegister() {
+      const { email, password, confirmPassword, image, name } = this;
+
+      try {
+        console.log('antes do if');
+        if (
+          !email ||
+          !email.trim() ||
+          !password ||
+          !password.trim() ||
+          !confirmPassword ||
+          !confirmPassword.trim() ||
+          !name ||
+          !name.trim() ||
+          !image ||
+          !image.trim()
+        ) {
+          console.log('depois dos ifs do if');
+          this.error = 'Por favor, preencher todos os dados.';
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          return (this.error = 'Senhas não coincidem.');
+        }
+
+        this.loading = true;
+
+        const body = {
+          name,
+          email,
+          password,
+          avatar: image
+        };
+
+        await registerServices.register(body);
+        return router.push({ name: 'login', query: { success: 'true' } });
+      } catch (e: any) {
+        console.log(e);
+
+        if (e?.response?.data?.message) {
+          this.error = e?.response?.data?.message;
+        } else {
+          this.error =
+            'Não foi possível cadastrar o usuário, tente novamente mais tarde!';
+        }
+      } finally {
+        this.loading = false;
+      }
+    }
   },
   computed: {
     buttonText() {
@@ -62,7 +111,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="container-public">
+  <div class="container-public register">
     <img src="../assets/images/logo.svg" alt="Logo Devammet" class="logo" />
 
     <form>

@@ -9,7 +9,8 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: LoginViewVue
+      component: LoginViewVue,
+      props: true
     },
     {
       path: '/register',
