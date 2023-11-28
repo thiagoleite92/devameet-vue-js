@@ -2,11 +2,16 @@
 import { defineComponent } from 'vue';
 import NavigationComponentVue from './NavigationComponent.vue';
 
-export default defineComponent({ components: { NavigationComponentVue } });
+export default defineComponent({
+  components: { NavigationComponentVue },
+  props: {
+    hide: Boolean
+  }
+});
 </script>
 
 <template>
-  <div class="container-header">
+  <div class="container-header" :class="{ hide }">
     <img src="../../assets/images/logo.svg" alt="Logo Devameet" class="logo" />
     <NavigationComponentVue />
   </div>
