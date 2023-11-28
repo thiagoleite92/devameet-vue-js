@@ -57,6 +57,7 @@ export default defineComponent({
 
         return router.push('/');
       } catch (e: any) {
+        console.log(e);
         console.log('Erro ao efetuar login:', e.message);
 
         if (e?.response?.data?.message) {

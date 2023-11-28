@@ -6,14 +6,12 @@ export const useAccessTokenStore = defineStore({
     token: localStorage.getItem('token')
   }),
   getters: {
-    isAuthenticated: (state: any) => !!state.token
+    isAuthenticated: (state: any) =>
+      state.token !== null && state.token !== undefined && state.token !== ''
   },
   actions: {
-    setToken(token: string) {
-      localStorage.setItem('token', token);
-    },
-    removeToken() {
-      localStorage.removeItem('token');
+    setToken(t: string) {
+      this.token = t;
     }
   }
 });

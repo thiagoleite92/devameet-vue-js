@@ -1,3 +1,4 @@
+import router from '@/router';
 import { useAccessTokenStore } from '@/stores/accessToken';
 import { HttpApiServices } from './HttpApiServices';
 
@@ -13,15 +14,14 @@ export class LoginServices extends HttpApiServices {
 
       store.setToken(data.token);
 
-      const userResponse = await this.get('/user');
-
-      if (userResponse && userResponse.data) {
-        const user = userResponse.data;
+      const userReponse = await this.get('/user');
+      if (userReponse && userReponse.data) {
+        const user = userReponse.data;
 
         localStorage.setItem('id', user.id);
         localStorage.setItem('name', user.name);
 
-        if (user?.avatar) {
+        if (user.avatar) {
           localStorage.setItem('avatar', user.avatar);
         }
       }
@@ -30,9 +30,8 @@ export class LoginServices extends HttpApiServices {
 
   logout() {
     const store = useAccessTokenStore();
-
-    store.removeToken();
-
     localStorage.clear();
+    store.setToken('');
+    router.push({ name: 'login' });
   }
 }

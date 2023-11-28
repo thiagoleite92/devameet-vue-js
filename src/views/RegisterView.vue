@@ -158,7 +158,7 @@ export default defineComponent({
 
       <div class="link">
         <p>Já possui uma conta?</p>
-        <router-link to="/login">Faça seu login agora</router-link>
+        <router-link to="/">Faça seu login agora</router-link>
       </div>
     </form>
   </div>
