@@ -18,4 +18,8 @@ export class MeetServices extends HttpApiServices {
   async deleteMeetById(id: string) {
     return this.delete(`${this.baseUrl}/${id}`);
   }
+
+  async addMeet(data: any) {
+    return this.post(this.baseUrl, data);
+  }
 }

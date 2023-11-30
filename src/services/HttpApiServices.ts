@@ -19,15 +19,15 @@ export class HttpApiServices {
     });
   }
 
-  post(url: string, data: any) {
+  protected post(url: string, data: any) {
     return this.axios.post(url, data);
   }
 
-  get(url: string) {
+  protected get(url: string) {
     return this.axios.get(url);
   }
 
-  put(url: string, data: any) {
+  protected put(url: string, data: any) {
     return this.axios.put(url, data);
   }
 
