@@ -1,11 +1,18 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-export default defineComponent({});
+import MeetUserHeader from './MeetUserHeader.vue';
+import MeetList from './MeetList.vue';
+export default defineComponent({
+  components: { MeetUserHeader, MeetList }
+});
 </script>
 
 <template>
   <div class="container-principal">
-    <div class="container-meet"></div>
+    <div class="container-meet">
+      <MeetUserHeader />
+      <MeetList />
+    </div>
   </div>
 </template>
 
